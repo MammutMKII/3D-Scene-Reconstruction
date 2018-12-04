@@ -43,8 +43,8 @@ int capture_images(Mat &leftImage, Mat &rightImage) {
 			std::cout << "end of video reached" << std::endl;
 		}
 
-		cvtColor(leftImage, leftImage, CV_BGR2GRAY);
-		cvtColor(rightImage, rightImage, CV_BGR2GRAY);
+		cvtColor(leftImage, leftImage, COLOR_BGR2GRAY);
+		cvtColor(rightImage, rightImage, COLOR_BGR2GRAY);
 
 		imshow(WIN_ORIG1, leftImage);
 		imshow(WIN_ORIG2, rightImage);
