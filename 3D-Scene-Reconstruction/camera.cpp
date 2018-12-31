@@ -31,8 +31,7 @@ int capture_images(Mat &leftImage, Mat &rightImage) {
 	namedWindow(WIN_ORIG2, WINDOW_AUTOSIZE);
 	moveWindow(WIN_ORIG2, videoWidth1+videoWidth2, 0);
 
-	int idx = 0;
-	for (;;) //Show the image captured in the window and repeat
+	while(true) //Show the image captured in the window and repeat
 	{
 		captInputVideo1 >> leftImage;
 		captInputVideo2 >> rightImage;
