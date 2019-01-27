@@ -24,12 +24,24 @@
     <ClCompile Include="reconstruction.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="display.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="match.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="reconstruction.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="display.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="match.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

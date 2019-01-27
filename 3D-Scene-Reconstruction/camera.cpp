@@ -5,12 +5,14 @@ int capture_images(Mat &leftImage, Mat &rightImage) {
 	int camIdx2 = 1;
 	VideoCapture captInputVideo1(camIdx1);
 	VideoCapture captInputVideo2(camIdx2);
-	if(!captInputVideo1.isOpened() || !captInputVideo1.isOpened()) {
+	if(!captInputVideo1.isOpened() || !captInputVideo2.isOpened()) {
 		std::cout << "Could not open video " << std::endl;
 		return -1;
 	}
 
 	//then request the size
+	//captInputVideo2.set(CAP_PROP_FRAME_WIDTH, 1920);
+	//captInputVideo2.set(CAP_PROP_FRAME_HEIGHT, 1080);
 	int videoWidth1 = (int)captInputVideo1.get(CAP_PROP_FRAME_WIDTH);
 	int videoHeight1 = (int)captInputVideo1.get(CAP_PROP_FRAME_HEIGHT);
 	int numOfFrames1 = (int)captInputVideo1.get(CAP_PROP_FRAME_COUNT);

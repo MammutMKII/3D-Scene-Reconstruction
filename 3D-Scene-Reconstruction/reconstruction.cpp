@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-void reconstruct(Mat &leftImage, Mat &rightImage, Mat &result) {
+void reconstructV1(Mat &leftImage, Mat &rightImage, Mat &result) {
 	const bool CROSS_CHECKING = false;
 	//auto sift = SIFT::create(10000, 3, 0.001, 100000, 0.4);
 	auto sift = SIFT::create();
@@ -65,4 +65,22 @@ void reconstruct(Mat &leftImage, Mat &rightImage, Mat &result) {
 
 	myfile << "end";
 	myfile.close();
+}
+
+
+void reconstructV2(std::vector<std::tuple<KeyPoint,KeyPoint>> keyPointMatches, std::vector<float> &X, std::vector<float> &Y, std::vector<float> &Z) {
+	X = std::vector<float>{};
+	Y = std::vector<float>{};
+	Z = std::vector<float>{};
+
+	for (auto match : keyPointMatches) {
+		auto leftKP = std::get<0>(match);
+		auto rightKP = std::get<1>(match);
+		float posX = (leftKP.pt.x + rightKP.pt.x) / 2.0;
+		float posY = (leftKP.pt.y + rightKP.pt.y) / 2.0;
+		float xdiff = abs(leftKP.pt.x - rightKP.pt.x);
+		X.push_back(posX);
+		Y.push_back(posY);
+		Z.push_back(xdiff);
+	}
 }
