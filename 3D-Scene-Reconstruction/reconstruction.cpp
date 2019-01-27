@@ -74,6 +74,7 @@ void reconstructV2(std::vector<std::tuple<KeyPoint,KeyPoint>> keyPointMatches, s
 	Z = std::vector<float>{};
 
 	for (auto match : keyPointMatches) {
+		//TODO triangulate using additional calibration params
 		auto leftKP = std::get<0>(match);
 		auto rightKP = std::get<1>(match);
 		float posX = (leftKP.pt.x + rightKP.pt.x) / 2.0;

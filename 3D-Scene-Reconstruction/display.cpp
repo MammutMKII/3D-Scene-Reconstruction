@@ -9,9 +9,9 @@ void displayStereo(Mat leftImage, Mat rightImage) {
 	const char* WIN_ORIG2 = "display stereo right";
 
 	namedWindow(WIN_ORIG1, WINDOW_AUTOSIZE);
-	//moveWindow(WIN_ORIG1, videoWidth1, 0);
+	moveWindow(WIN_ORIG1, 100, 0);
 	namedWindow(WIN_ORIG2, WINDOW_AUTOSIZE);
-	//moveWindow(WIN_ORIG2, videoWidth1+videoWidth2, 0);
+	moveWindow(WIN_ORIG2, 650, 0);
 
 	imshow(WIN_ORIG1, leftImage);
 	imshow(WIN_ORIG2, rightImage);

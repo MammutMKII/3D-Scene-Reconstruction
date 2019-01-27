@@ -182,12 +182,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3D-Scene-Reconstruction.cpp" />
+    <ClCompile Include="calibration.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="display.cpp" />
     <ClCompile Include="match.cpp" />
     <ClCompile Include="reconstruction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="calibration.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="display.h" />
     <ClInclude Include="match.h" />

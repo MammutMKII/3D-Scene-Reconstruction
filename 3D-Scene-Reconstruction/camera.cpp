@@ -61,3 +61,6 @@ int capture_images(Mat &leftImage, Mat &rightImage) {
 	return 0;
 }
 
+void takeStereo(Mat &leftImage, Mat &rightImage) {
+	capture_images(leftImage, rightImage);
+}

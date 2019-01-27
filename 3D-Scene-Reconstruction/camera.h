@@ -13,3 +13,4 @@
 using namespace cv;
 
 int capture_images(Mat &leftImage, Mat &rightImage);
+void takeStereo(Mat &leftImage, Mat &rightImage);
