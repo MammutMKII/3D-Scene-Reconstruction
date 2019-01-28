@@ -4,10 +4,14 @@
 #include <iostream>
 #include <fstream>
 
+#include <opencv2/xfeatures2d.hpp>
+
+using namespace cv;
+
 void reconstructV1(Mat &leftImage, Mat &rightImage, Mat &result) {
 	const bool CROSS_CHECKING = false;
 	//auto sift = SIFT::create(10000, 3, 0.001, 100000, 0.4);
-	auto sift = SIFT::create();
+	auto sift = xfeatures2d::SIFT::create();
 
 	std::vector<KeyPoint> leftKeypoints{};
 	Mat leftDescriptors{};
@@ -68,20 +72,29 @@ void reconstructV1(Mat &leftImage, Mat &rightImage, Mat &result) {
 }
 
 
-void reconstructV2(std::vector<std::tuple<KeyPoint,KeyPoint>> keyPointMatches, std::vector<float> &X, std::vector<float> &Y, std::vector<float> &Z) {
-	X = std::vector<float>{};
-	Y = std::vector<float>{};
-	Z = std::vector<float>{};
+void reconstructV2(std::vector<std::tuple<KeyPoint,KeyPoint>> keyPointMatches, std::vector<float> &X, std::vector<float> &Y, std::vector<float> &Z, StereoCalibrationParams calibrationParams) {
+	std::vector<Point3f> disparityPoints{};
 
 	for (auto match : keyPointMatches) {
-		//TODO triangulate using additional calibration params
 		auto leftKP = std::get<0>(match);
 		auto rightKP = std::get<1>(match);
 		float posX = (leftKP.pt.x + rightKP.pt.x) / 2.0;
 		float posY = (leftKP.pt.y + rightKP.pt.y) / 2.0;
-		float xdiff = abs(leftKP.pt.x - rightKP.pt.x);
-		X.push_back(posX);
-		Y.push_back(posY);
-		Z.push_back(xdiff);
+		float xdiff = leftKP.pt.x - rightKP.pt.x;
+
+		disparityPoints.push_back(Point3f(posX, posY, xdiff));
+	}
+
+	std::vector<Point3f> depthPoints{};
+	perspectiveTransform(disparityPoints, depthPoints, calibrationParams.Q);
+
+	X = std::vector<float>{};
+	Y = std::vector<float>{};
+	Z = std::vector<float>{};
+
+	for (auto point : depthPoints) {
+		X.push_back(point.x);
+		Y.push_back(point.y);
+		Z.push_back(point.z);
 	}
 }

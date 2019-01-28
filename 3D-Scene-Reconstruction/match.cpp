@@ -1,11 +1,14 @@
 #include "match.h"
 
 #include <opencv2/highgui.hpp>
+#include <opencv2/xfeatures2d.hpp>
+
+using namespace cv;
 
 void matchStereo(Mat calibratedLeftImage, Mat calibratedRightImage, std::vector<std::tuple<KeyPoint, KeyPoint>> &keyPointMatches) {
 	const bool CROSS_CHECKING = false;
-	//auto sift = SIFT::create(10000, 3, 0.001, 100000, 0.4);
-	auto sift = SIFT::create();
+	auto sift = xfeatures2d::SIFT::create(10000, 3, 0.001, 100000, 0.4);
+	//auto sift = xfeatures2d::SIFT::create();
 
 	std::vector<KeyPoint> leftKeypoints{};
 	Mat leftDescriptors{};
@@ -37,4 +40,5 @@ void matchStereo(Mat calibratedLeftImage, Mat calibratedRightImage, std::vector<
 	Mat matchImage;
 	drawMatches(calibratedLeftImage, leftKeypoints, calibratedRightImage, rightKeypoints, filteredMatches, matchImage);
 	imshow("matches", matchImage);
+	waitKey(5000);
 }

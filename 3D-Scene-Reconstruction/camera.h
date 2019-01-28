@@ -3,14 +3,7 @@
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
-#include <opencv2/opencv.hpp>
 
-#include <string>
-#include <iostream>
-
-#include "Windows.h"
-
-using namespace cv;
-
-int capture_images(Mat &leftImage, Mat &rightImage);
-void takeStereo(Mat &leftImage, Mat &rightImage);
+int captureStereo(cv::Mat &leftImage, cv::Mat &rightImage, cv::VideoCapture leftCapture, cv::VideoCapture rightCapture);
+void openStereoVideo(cv::VideoCapture &leftCapture, cv::VideoCapture &rightCapture);
+void takeStereo(cv::Mat &leftImage, cv::Mat &rightImage);

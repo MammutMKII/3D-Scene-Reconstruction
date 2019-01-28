@@ -4,18 +4,17 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 
-void displayStereo(Mat leftImage, Mat rightImage) {
-	const char* WIN_ORIG1 = "display stereo left";
-	const char* WIN_ORIG2 = "display stereo right";
+using namespace cv;
 
-	namedWindow(WIN_ORIG1, WINDOW_AUTOSIZE);
-	moveWindow(WIN_ORIG1, 100, 0);
-	namedWindow(WIN_ORIG2, WINDOW_AUTOSIZE);
-	moveWindow(WIN_ORIG2, 650, 0);
+void displayStereo(Mat leftImage, Mat rightImage, std::string win1Name, std::string win2Name, int wait) {
+	namedWindow(win1Name, WINDOW_AUTOSIZE);
+	moveWindow(win1Name, 0, 300);
+	namedWindow(win2Name, WINDOW_AUTOSIZE);
+	moveWindow(win2Name, 480, 300);
 
-	imshow(WIN_ORIG1, leftImage);
-	imshow(WIN_ORIG2, rightImage);
-	waitKey(100);
+	imshow(win1Name, leftImage);
+	imshow(win2Name, rightImage);
+	waitKey(wait);
 }
 
 void display3D(std::vector<float> X, std::vector<float> Y, std::vector<float> Z) {
