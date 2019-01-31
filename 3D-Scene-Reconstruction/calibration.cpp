@@ -25,7 +25,7 @@ std::vector<std::vector<Vec3f>> generatePattern(int views, int height, int width
 }
 
 StereoCalibrationParams computeStereoCalibrationParams() {
-	const int VIEWS = 20;
+	const int VIEWS = 10;
 	const int PT_HEIGHT = 6;
 	const int PT_WIDTH = 7;
 	const float PT_SIZE = 2.4;
